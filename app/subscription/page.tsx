@@ -47,29 +47,24 @@ const SubscriptionPage: React.FC = () => {
   const [selectedTier, setSelectedTier] = useState<number>(0);
   const [error, setError] = useState<string>('');
 
-  // Connect to wallet and initialize contract
   const connectWallet = async () => {
     try {
       if (window.ethereum) {
         setLoading(true);
         
-        // Request account access
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
         const account = accounts[0];
         setAccount(account);
         
-        // Initialize provider and signer
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         setProvider(provider);
         
         const signer = provider.getSigner();
         setSigner(signer);
         
-        // Initialize contract instance
         const contractInstance = new ethers.Contract(CONTRACT_ADDRESS, ContractABI, signer);
         setContract(contractInstance);
         
-        // Load user data
         await loadUserData(contractInstance, account);
         
         setLoading(false);

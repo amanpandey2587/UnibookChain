@@ -1,4 +1,3 @@
-// app/upload/page.tsx
 "use client";
 
 import { useState, useCallback, useEffect } from 'react';
@@ -83,7 +82,7 @@ export default function UploadPage() {
         title: "Upload Successful",
         description: "Document uploaded to IPFS",
       });
-      return upload.IpfsHash; // Return just the hash
+      return upload.IpfsHash; 
     } catch (error) {
       console.error("Pinata upload error details:", error);
       

@@ -54,7 +54,6 @@ export default function AdminPage() {
       const requestsData = [];
       
       for (let i = 0; i < requestCount; i++) {
-        // Get both basic info and hash for each request
         try {
           const [requestInfo, pdfHash] = await Promise.all([
             contract.getRequestInfo(i),
